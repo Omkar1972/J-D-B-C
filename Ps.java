@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class jdbc {
+public class Ps {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
@@ -16,12 +16,32 @@ public class jdbc {
 		//System.out.println("Step 2");
 		
 		
-		Statement st=con.createStatement();
-//		System.out.println("Step 3");		
-		String sql="insert into student_tbl (s_id,s_name) values(1,'OMKAR')";
+		Scanner s=new Scanner(System.in);
 		
 		
-		int a=st.executeUpdate(sql);
+		for(int i=0;i<100;i++)
+		{
+			System.out.println("Enter id: ");
+			int s_id=Integer.parseInt(s.nextLine());
+			
+			System.out.println("Enter Name:- ");
+			String s_name=s.nextLine();
+			
+		
+		
+		
+//		Statement st=con.createStatement();
+//		System.out.println("Step 3");
+		
+		String sql="insert into student_tbl (s_id,s_name) values(?,?)";
+		
+		PreparedStatement ps=con.prepareStatement(sql);
+		
+		
+		ps.setString(2, s_name);
+		ps.setInt(1, s_id);
+		
+		int a=ps.executeUpdate();
 		
 		if(a>0)
 		{
@@ -32,10 +52,11 @@ public class jdbc {
 			System.out.println("Data not inserted");
 		}
 		
+	
 		//System.out.println("Step 4");
 		
 		con.close();
 		//System.out.println("step 5");
-		
+		}
 	}
 }
