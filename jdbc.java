@@ -28,7 +28,7 @@ public class jdbc {
 			System.out.println("Data inserted");
 		}
 		else
-		{
+		{ 
 			System.out.println("Data not inserted");
 		}
 		
